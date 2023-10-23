@@ -1,0 +1,6 @@
+accelerate==0.23.0
+monai==1.2.0
+timm==0.9.7
+objprint==0.2.3
+einops
+torch

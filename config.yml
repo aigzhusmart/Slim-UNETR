@@ -1,0 +1,107 @@
+is_brats2021: False
+is_brain2019: False
+is_hepatic_vessel2021: True
+
+brats2021:
+  data_root: /dataset/cv/seg/BRaTS2021/
+  trainer:
+    num_epochs: 300
+    warmup: 5
+    train_ratio: 0.8
+    batch_size: 16
+    lr: 0.001
+    min_lr: 0.0000001
+    optimizer: adamw
+    weight_decay: 0.05
+    weight_decay_end: 0.04
+    momentum_teacher: 0.996
+    pred_ratio_var: 0
+    num_workers: 16
+    image_size: 128
+    resume: False
+
+  finetune:
+    checkpoint: brain2021
+  
+  slim_unetr:
+    in_channels: 4
+    out_channels: 3
+    embed_dim: 96 
+    embedding_dim: 64 
+    channels: [ 24, 48, 60 ]
+    blocks: [ 1, 2, 3, 2 ]
+    heads: [ 1, 2, 4, 4 ]
+    r: [ 4, 2, 2, 1 ]
+    dropout: 0.3
+
+brain2019:
+  data_root: /dataset/cv/seg/MSD/Task01_Brain/
+  trainer:
+    num_epochs: 300
+    warmup: 5
+    train_ratio: 0.8
+    batch_size: 16
+    lr: 0.001
+    min_lr: 0.0000001
+    optimizer: adamw
+    weight_decay: 0.05
+    weight_decay_end: 0.04
+    momentum_teacher: 0.996
+    pred_ratio_var: 0
+    num_workers: 16
+    
+    image_size: 128
+    resume: False
+
+  finetune:
+    checkpoint: brain2019
+  
+  slim_unetr:
+    in_channels: 4
+    out_channels: 3
+    embed_dim: 96 
+    embedding_dim: 64 
+    channels: [ 24, 48, 60 ]
+    blocks: [ 1, 2, 3, 2 ]
+    heads: [ 1, 2, 4, 4 ]
+    r: [ 4, 2, 2, 1 ]
+    dropout: 0.3
+    
+
+hepatic_vessel2021:
+  data_root: /dataset/cv/seg/MSD/Task08_HepaticVessel/
+  trainer:
+    num_epochs: 1000
+    warmup: 5
+    train_ratio: 0.8
+    batch_size: 16
+    lr: 0.001
+    min_lr: 0.0000001
+    optimizer: adamw
+    weight_decay: 0.05
+    weight_decay_end: 0.04
+    momentum_teacher: 0.996
+    pred_ratio_var: 0
+    num_workers: 16
+    
+    image_size: 96
+    resume: False
+
+  finetune:
+    checkpoint: hepatic_vessel
+
+  slim_unetr:
+    in_channels: 1
+    out_channels: 2
+    embed_dim: 96 
+    embedding_dim: 27 
+    channels: [ 24, 48, 60 ]
+    blocks: [ 1, 2, 3, 2 ]
+    heads: [ 1, 2, 4, 4 ]
+    r: [ 4, 2, 2, 1 ]
+    dropout: 0.3
+
+
+
+
+
