@@ -67,7 +67,7 @@ model = SlimUNETR(in_channels=4,
                   dropout=0.3
                   )
 ```
-In addition, the Slim UETR (MSD2021 Task-08 Hepatic Vessel dataset) is defined as:
+In addition, the Slim UNETR (MSD2021 Task-08 Hepatic Vessel dataset) is defined as:
 ``` bash
 model = SlimUNETR(in_channels=1,
                   out_channels=2,
